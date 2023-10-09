@@ -1,8 +1,8 @@
-import User from '../models/user.model.js'
-import bycript from 'bcryptjs'
-import { generateToken, setError } from '../herlpers/utils.js';
+const User = require('../models/user.model.js');
+const bycript = require('bcryptjs');
+const { generateToken, setError } = require('../herlpers/utils.js');
 
-export const register = async (req, res, next) => {
+const register = async (req, res, next) => {
   try {
     const newUser = new User(req.body);
 
@@ -19,7 +19,7 @@ export const register = async (req, res, next) => {
   }
 }
 
-export const login = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
     const userInDB = await User.findOne({ email: req.body.email });
     if (!userInDB) return next(setError(401, 'Not authorized'));
@@ -39,7 +39,7 @@ export const login = async (req, res, next) => {
   }
 }
 
-export const getUserById = async (req, res, next) => {
+const getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
@@ -57,9 +57,8 @@ export const getUserById = async (req, res, next) => {
   }
 }
 
-// export const logout = async (_req, res) => {
-//   res.cookie('token', '', {
-//     expires: new Date(0)
-//   })
-//   return res.sendStatus(200)
-// }
+module.exports = {
+  register,
+  login,
+  getUserById
+}

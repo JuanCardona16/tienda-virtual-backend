@@ -1,5 +1,5 @@
-import User from '../models/user.model.js'
-import { setError } from '../herlpers/utils.js'
+const User = require('../models/user.model.js');
+const { setError } = require('../herlpers/utils.js');
 
 const createUser = async (req, res, next) => {
   try {
@@ -11,4 +11,8 @@ const createUser = async (req, res, next) => {
   } catch (error) {
     return next(setError(500, 'create User failed')); 
   }
+}
+
+module.exports = {
+  createUser
 }

@@ -1,7 +1,7 @@
-import { verifyToken, setError } from '../herlpers/utils.js'
-import User from '../models/user.model.js'
+const { verifyToken, setError } = require('../herlpers/utils.js');
+const User = require('../models/user.model.js');
 
-export const authorize = async (req, _res, next) => {
+const authorize = async (req, _res, next) => {
   try {
     const token = req.headers.authorization;
     if (!token) throw new Error();
@@ -15,4 +15,8 @@ export const authorize = async (req, _res, next) => {
   } catch (error) {
     return next(setError(401, 'No autorizado'))
   }
+}
+
+module.exports = {
+  authorize
 }

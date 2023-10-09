@@ -1,5 +1,5 @@
-import app from './app.js';
-import { connectDB } from '../src/config/database.js';
+const app = require('./app.js');
+const { connectDB } = require( '../src/config/database.js');
 
 connectDB();
 app.listen(process.env.PORT);

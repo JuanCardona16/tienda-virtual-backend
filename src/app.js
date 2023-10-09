@@ -1,10 +1,10 @@
-import express from 'express'
-import morgan from 'morgan'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import cookieParser from 'cookie-parser'
-import authRoutes from './routes/auth.routes.js'
-import { setError } from './herlpers/utils.js';
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+const authRoutes = require('./routes/auth.routes.js');
+const { setError } = require('./herlpers/utils.js');
 
 const app = express(); 
 dotenv.config();
@@ -46,4 +46,4 @@ app.use((error, _req, res, _next) => {
 
 app.disable('x-powered-by')
 
-export default app;
+module.exports = app;

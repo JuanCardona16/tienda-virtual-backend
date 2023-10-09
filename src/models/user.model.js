@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-import { validatePassword, passwordHash, setError } from '../herlpers/utils.js';
+const mongoose = require('mongoose');
+const { validatePassword, passwordHash, setError } = require('../herlpers/utils.js');
 
 // Este es mi modelo para el usuario de mi aplicación
 const userSchema = new mongoose.Schema({
@@ -31,4 +31,7 @@ userSchema.pre('save', function(next) {
   next();
 })
 
-export default mongoose.model('User', userSchema);
+
+const schemaUser = mongoose.model('User', userSchema);
+
+module.exports = schemaUser;

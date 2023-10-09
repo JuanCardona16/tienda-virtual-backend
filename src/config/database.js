@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose');
 
 // Funcion para realizar la conección a nuestra base de datos no relacional de mongoDB
 // Para este proyecto utilizaremos mongoDB Atlas, que es en la nube.
-export const connectDB = async () => {
+const connectDB = async () => {
   try {
     await mongoose.connect(process.env.URL_DATABASE);
     console.log(">>> Database is connect sucessfull!")
@@ -10,3 +10,7 @@ export const connectDB = async () => {
     console.log(">>> Database is not connect sucessfull!. \n The error is. " + error)
   }
 } 
+
+module.exports = {
+  connectDB
+}
