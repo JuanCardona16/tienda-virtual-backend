@@ -1,6 +1,7 @@
 const User = require('../models/user.model.js');
 const bycript = require('bcryptjs');
 const { generateToken, setError } = require('../herlpers/utils.js');
+const { RegisterService, loginService } = require('../services/auth.service.js');
 
 const register = async (req, res, next) => {
   try {
@@ -15,7 +16,7 @@ const register = async (req, res, next) => {
       user: userInDB,
     })
   } catch (error) {
-    return next(setError(500, 'create User failed')); 
+    return next(setError(500, 'create User failed: ' + error)); 
   }
 }
 
@@ -29,10 +30,35 @@ const login = async (req, res, next) => {
     const token = generateToken({ id: userInDB._id });
 
     return res.status(200).json({
-      user: userInDB,
+      user: {
+        id: userInDB._id,
+        username: userInDB.username,
+        email: userInDB.email,
+      },
       token: token
     })
 
+  } catch (error) {
+    console.log(error)
+    return next(setError(500, `Login ha fallado, error: ${error}`));
+  }
+}
+
+// Prueba
+
+const registerPrueba = async (req, res, next) => {
+  try {
+    const response = await RegisterService(req, res, next);
+    return response;
+  } catch (error) {
+    return next(setError(500, 'create User failed: ' + error)); 
+  }
+}
+
+const loginPrueba = async (req, res, next) => {
+  try {
+    const response = await loginService(req, res, next);
+    return response;
   } catch (error) {
     console.log(error)
     return next(setError(500, `Login ha fallado, error: ${error}`));
@@ -60,5 +86,7 @@ const getUserById = async (req, res, next) => {
 module.exports = {
   register,
   login,
-  getUserById
+  getUserById,
+  registerPrueba,
+  loginPrueba,
 }
