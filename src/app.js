@@ -23,8 +23,9 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 
 app.use(cors({
-  origin: 'https://juancardona16.github.io/tienda-virtual-frontend',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: (_origin, callback) => callback(null, true),
+  // origin: 'https://juancardona16.github.io/tienda-virtual-frontend',
+  // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }))
 
