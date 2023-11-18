@@ -33,7 +33,9 @@ app.use(express.urlencoded({ limit: '1mb', extended: true }))
 
 // Routes
 app.use('/api/v1', authRoutes)
-app.use('/api/v1/hi', () => "hellow world!")
+app.use('/', (_req, res) => {
+  return res.send("hellow world!");
+})
 
 // Rutas no encontradas
 app.use('*', (_req, _res, next) => {
