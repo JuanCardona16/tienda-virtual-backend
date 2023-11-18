@@ -5,7 +5,8 @@
   "description": "Proyecto de estudiantes de tercer semestre de ingenieria de software. Este es el backend de nuestra aplicación. Desarrollada en NodeJS y con MongoDB.",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "Juan David Cardona",
