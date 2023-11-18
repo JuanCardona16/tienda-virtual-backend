@@ -33,7 +33,7 @@ app.use(express.urlencoded({ limit: '1mb', extended: true }))
 
 // Routes
 app.use('/api/v1', authRoutes)
-app.use('/', (_req, res) => {
+app.get('/', (_req, res) => {
   return res.send("hellow world!");
 })
 
